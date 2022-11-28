@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
-        {
+        { // When the "Jump" key is pressed (configurable), the jumpFlag is triggered
             jumpFlag = true;
         }
     }
@@ -20,7 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
     private void FixedUpdate()
     {
         if (jumpFlag == true)
-        {
+        { //The reason I use a flag is so that I can run the Jump function in FixedUpdate
             Jump(jumpForce);
             jumpFlag = false;
         }

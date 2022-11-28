@@ -221,6 +221,8 @@ GameObject:
   - component: {fileID: 755328639}
   - component: {fileID: 755328638}
   - component: {fileID: 755328637}
+  - component: {fileID: 755328646}
+  - component: {fileID: 755328645}
   - component: {fileID: 755328644}
   m_Layer: 0
   m_Name: 2
@@ -403,6 +405,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 50
   jumpFlag: 0
+--- !u!58 &755328645
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755328636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -11.6, y: -10.4}
+  serializedVersion: 2
+  m_Radius: 1.9
+--- !u!58 &755328646
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755328636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 11.6, y: -10.4}
+  serializedVersion: 2
+  m_Radius: 1.9
 --- !u!1 &1843069299
 GameObject:
   m_ObjectHideFlags: 0
