@@ -23,12 +23,17 @@ public class Controller : MonoBehaviour
             preJumpTimer = preJump;
         }
 
+        if(!onGround && turning>=turnGroundMax)
+        {
+            turning = turnPlayerMax;
+        }
+
         if (Input.GetKey("a") && onGround && turning < turnGroundMax)
-        { //This check whether the player is in the air to see how fast they should turn
+        { //This checks if the player is on the ground. If they are they will turn quicker.
             turning += turnSpeedGround;
         }
         else if (Input.GetKey("a") && !onGround && turning < turnPlayerMax)
-        { 
+        { //This checks if the player is in the air. If they are they will turn slower.
             turning += turnSpeed;
         }
         else if (!Input.GetKey("a"))
