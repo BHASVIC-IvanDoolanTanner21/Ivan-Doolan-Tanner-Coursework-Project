@@ -11,6 +11,7 @@ public class ObstacleSpawner : MonoBehaviour
     private int randomObject;
     public bool spawnObject = true;
     private GameObject obstacleClone;
+    //private Rigidbody2D 
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         //This moves the object towards position two at the speed selected
+        
         obstacleClone.transform.position = Vector3.MoveTowards(obstacleClone.transform.position, positionTwo.position, moveSpeed * Time.deltaTime);
         
         //Deletes the instance of the obstacle when it hits position two and sets spawn object to true to create another object
