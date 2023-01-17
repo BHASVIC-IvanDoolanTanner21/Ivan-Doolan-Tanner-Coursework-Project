@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class DeathCollisionScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public bool hasLost;
+
+    private void OnTriggerEnter2D(Collider2D ground)
+    { //if the trigger colliders (on the skateboard and the penguin) hit the ground or an obstacle, they toggle the lose bool
+        if (ground.CompareTag("Ground"))
+        {
+            hasLost = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool PlayerLost
     {
-        
+        get
+        {
+            return hasLost;
+        }
     }
 }

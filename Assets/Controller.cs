@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     public bool onGround = false;
     public float preJumpTimer = 0;
     public float preJump = 0.15f;
+    public GameObject deathCollider;
+    public bool hasLost;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +26,8 @@ public class Controller : MonoBehaviour
         }
 
         if(!onGround && turning>=turnGroundMax)
-        {
+        {   //To avoid the player cheating by keeping the same turning speed on ground as in air (this would make them spin faster),
+            //if they are in the air and their turn speed is faster their speed is immediately set to the maximum air speed.
             turning = turnPlayerMax;
         }
 
@@ -54,6 +57,11 @@ public class Controller : MonoBehaviour
             }
             //This counts down the timer when it is active
             preJumpTimer -= Time.deltaTime;
+        }
+
+        if(deathCollider.DeathCollisionScript.PlayerLost.get)
+        {
+            hasLost = true;
         }
 
         // Here I run AddTorque using the turning variable, this is what rotates the player when the button is pressed
