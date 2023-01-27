@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    //movement variables:
     public float jumpForce = 5f;
     public float bounceForce = 2.5f;
     public float turning = 0f;
@@ -11,21 +12,33 @@ public class Controller : MonoBehaviour
     public float turnSpeedGround = 0f;
     public float turnPlayerMax = 2f;
     public float turnGroundMax = 0f;
+    //ground check variables:
     public bool onGround = false;
     public bool onBounce = false;
+    //jump timer variables:
     public float preJumpTimer = 0;
     public float preJump = 0.15f;
+    //gameobjects:
     public GameObject deathCollider;
     public GameObject scoreController;
+    public GameObject jumpButton;
+    public GameObject rotateButton;
+    //jump / rotate bools:
+    /*public bool isRotate;
+    public bool isJump;*/
+    //pause / loss variables:
     public bool isPaused = false;
     public bool hasLost;
 
     // Update is called once per frame
     void Update()
     {
+        //isRotate = rotateButton.GetComponent<ButtonClickScript>().isPressed;
+        //isJump = jumpButton.GetComponent<ButtonClickScript>().isPressed;
+
         isPaused = scoreController.GetComponent<SpeedController>().isPaused;
 
-        if (Input.GetButtonDown("Jump")&&!isPaused)
+        if (jumpButton.GetComponent<ButtonClickScript>().isPressed && !isPaused)
         { // When the "Jump" key is pressed (configurable), the the preJumpTimer is started
             // This allows the player to press the button a little bit too early and still be allowed to jump
             preJumpTimer = preJump;
@@ -36,16 +49,16 @@ public class Controller : MonoBehaviour
             //if they are in the air and their turn speed is faster their speed is immediately set to the maximum air speed.
             turning = turnPlayerMax;
         }
-
-        if (Input.GetKey("a") && onGround && turning < turnGroundMax)
+        //Input.GetKey("a")
+        if (rotateButton.GetComponent<ButtonClickScript>().isPressed && onGround && turning < turnGroundMax)
         { //This checks if the player is on the ground. If they are they will turn quicker.
             turning += turnSpeedGround;
         }
-        else if (Input.GetKey("a") && !onGround && turning < turnPlayerMax)
+        else if (rotateButton.GetComponent<ButtonClickScript>().isPressed && !onGround && turning < turnPlayerMax)
         { //This checks if the player is in the air. If they are they will turn slower.
             turning += turnSpeed;
         }
-        else if (!Input.GetKey("a"))
+        else if (!rotateButton.GetComponent<ButtonClickScript>().isPressed)
         { //if the rotation key isn't being pressed there is no additional force added to the player
             turning = 0;
         }
@@ -57,6 +70,8 @@ public class Controller : MonoBehaviour
     // FixedUpdate is called as several times per frame, this is where I run my physics operations in order for them to not be reliant on framerate
     private void FixedUpdate()
     {
+        
+
         if (preJumpTimer > 0)
         {
             if (onGround)
