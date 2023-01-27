@@ -15,6 +15,14 @@ public class ObstacleSpawner : MonoBehaviour
     public double speedMultiplier = 1.2;
     //private Rigidbody2D 
     
+
+    private void Update()
+    {
+        if (scoreController.GetComponent<SpeedController>().gameStarted == false)
+        {
+            obstacleClone.transform.position = positionOne.position;
+        }
+    }
     private void FixedUpdate()
     {
 
@@ -32,7 +40,6 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         //This moves the object towards position two at the speed selected
-
         obstacleClone.transform.position = Vector3.MoveTowards(obstacleClone.transform.position, positionTwo.position, moveSpeed*Time.deltaTime);
         
         //Deletes the instance of the obstacle when it hits position two and sets spawn object to true to create another object

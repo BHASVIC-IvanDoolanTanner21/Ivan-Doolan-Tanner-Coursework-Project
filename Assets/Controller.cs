@@ -26,15 +26,26 @@ public class Controller : MonoBehaviour
     //jump / rotate bools:
     /*public bool isRotate;
     public bool isJump;*/
-    //pause / loss variables:
+    //pause / loss variables:a
     public bool isPaused = false;
     public bool hasLost;
+
+    void Start()
+    {
+        transform.position = new Vector2(transform.position.x, -15);
+    }
 
     // Update is called once per frame
     void Update()
     {
         //isRotate = rotateButton.GetComponent<ButtonClickScript>().isPressed;
         //isJump = jumpButton.GetComponent<ButtonClickScript>().isPressed;
+
+        if (scoreController.GetComponent<SpeedController>().gameStarted == false)
+        {
+            transform.position = new Vector2(transform.position.x, -15);
+            transform.eulerAngles = new Vector3(0,0,0);
+        }
 
         isPaused = scoreController.GetComponent<SpeedController>().isPaused;
 
@@ -64,14 +75,17 @@ public class Controller : MonoBehaviour
         }
 
         //This references the script in the deathCollider so it can test whether the player has died
-        hasLost = deathCollider.GetComponent<DeathCollisionScript>().hasLost;
+        if (deathCollider.GetComponent<DeathCollisionScript>().hasLost)
+        {
+            hasLost = deathCollider.GetComponent<DeathCollisionScript>().hasLost;
+            deathCollider.GetComponent<DeathCollisionScript>().hasLost = false;
+        }
+        
     }
 
     // FixedUpdate is called as several times per frame, this is where I run my physics operations in order for them to not be reliant on framerate
     private void FixedUpdate()
     {
-        
-
         if (preJumpTimer > 0)
         {
             if (onGround)
@@ -97,7 +111,7 @@ public class Controller : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(0f, force - gameObject.GetComponent<Rigidbody2D>().velocity.y, 0f), ForceMode2D.Impulse);
     }
 
-            private void OnTriggerStay2D(Collider2D ground)
+    private void OnTriggerStay2D(Collider2D ground)
     { //if the trigger collider (below the wheels) is in contact with the ground then onGround is set to true, allowing the player to jump
         if (ground.CompareTag("Ground")) 
         {
