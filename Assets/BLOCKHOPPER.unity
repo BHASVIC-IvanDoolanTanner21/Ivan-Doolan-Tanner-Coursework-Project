@@ -2416,12 +2416,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  mainSpeed: 20
+  mainSpeed: 0
   timeAlive: 0
   timeAliveDivision: 0.001
   score: 0
   gameStarted: 0
-  highscore: 0
   camera: {fileID: 375120952}
   pauseButton: {fileID: 1504786212}
   bigPauseButton: {fileID: 1914834268}
@@ -2497,7 +2496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 3.23
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
