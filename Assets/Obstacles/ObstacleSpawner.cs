@@ -17,7 +17,7 @@ public class ObstacleSpawner : MonoBehaviour
     
 
     private void Update()
-    {
+    { //this sets the position of the objects to default if the game is not running
         if (scoreController.GetComponent<SpeedController>().gameStarted == false)
         {
             obstacleClone.transform.position = positionOne.position;

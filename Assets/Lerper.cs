@@ -9,7 +9,7 @@ public class Lerper : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { //This allows for camera movement
         if (speedController.GetComponent<SpeedController>().cameraMoveUp)
         {
             speedController.GetComponent<SpeedController>().cameraMoveUp = false;

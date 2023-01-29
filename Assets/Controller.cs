@@ -23,9 +23,6 @@ public class Controller : MonoBehaviour
     public GameObject scoreController;
     public GameObject jumpButton;
     public GameObject rotateButton;
-    //jump / rotate bools:
-    /*public bool isRotate;
-    public bool isJump;*/
     //pause / loss variables:a
     public bool isPaused = false;
     public bool hasLost;
@@ -38,9 +35,6 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //isRotate = rotateButton.GetComponent<ButtonClickScript>().isPressed;
-        //isJump = jumpButton.GetComponent<ButtonClickScript>().isPressed;
-
         if (scoreController.GetComponent<SpeedController>().gameStarted == false)
         {
             transform.position = new Vector2(transform.position.x, -15);

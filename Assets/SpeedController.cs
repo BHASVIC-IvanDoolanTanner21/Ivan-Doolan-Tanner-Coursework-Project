@@ -15,7 +15,7 @@ public class SpeedController : MonoBehaviour
     //unitys built in e does not extend far enough to be practical so I have pasted in a more precise version
     private double e = 2.71828182845904523536028747135266249775724709369995957496696762772407663035354759;
     public bool gameStarted = false;
-    public int highscore;
+    //public int highscore;
     public new Camera camera;
     public GameObject pauseButton, bigPauseButton, startButton, player, rotateButton, jumpButton;
     private bool firstIteration = true, firstIterationTwo = true;
@@ -24,11 +24,10 @@ public class SpeedController : MonoBehaviour
     public Text scoreText;
 
     private void Start()
-    {
+    {//stops time
         Time.timeScale = 0f;
         gameStarted = false;
-        Debug.Log("1");
-        highscore = PlayerPrefs.GetInt("highscore", 0);
+        //highscore = PlayerPrefs.GetInt("highscore", 0);
         camera.transform.position = new Vector3(0, -69, -10);
     }
 
@@ -37,18 +36,16 @@ public class SpeedController : MonoBehaviour
         if (startButton.GetComponent<ButtonClickScript>().isPressed)
         {
             gameStarted = true;
-            Debug.Log("2");
             startButton.transform.localPosition = new Vector2(0, -450);
             Time.timeScale = 1f;
             firstIteration = true;
         }
         if (player.GetComponent<Controller>().hasLost)
-        {
+        { //if the player has lost, this is run. It goes to the gui screen and restarts the game
             Time.timeScale = 0f;
             gameStarted = false;
-            Debug.Log("3");
-            PlayerPrefs.SetInt("highscore", highscore);
-            PlayerPrefs.Save();
+            /*PlayerPrefs.SetInt("highscore", highscore);
+            PlayerPrefs.Save();*/
             if (firstIterationTwo)
             {
                 startButton.transform.localPosition = new Vector2(0, -235);
@@ -61,7 +58,7 @@ public class SpeedController : MonoBehaviour
             score = 0;
         }
         if(gameStarted)
-        {
+        { //When the game is started this is run, it goes to the game screen and starts the time to show the score
             if(firstIteration)
             {
                 jumpButton.transform.localPosition = new Vector2(-81, -240);
@@ -72,7 +69,7 @@ public class SpeedController : MonoBehaviour
             //this measures the ongoing time
             timeAlive += Time.deltaTime;
             score = (int)timeAlive * 100;
-
+            //this is the functionality for the pause menu, if you click pause, it pauses and vice versa
             if (pauseButton.GetComponent<ButtonClickScript>().isPressed)
             {
                 isPaused = true;
@@ -96,7 +93,7 @@ public class SpeedController : MonoBehaviour
     }
 
     public void PauseGame()
-    {
+    { //pause function
         if (isPaused)
         {
             Time.timeScale = 0f;
