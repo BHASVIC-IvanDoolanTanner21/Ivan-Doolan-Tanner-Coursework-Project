@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
     public GameObject scoreController;
     public GameObject jumpButton;
     public GameObject rotateButton;
-    //pause / loss variables:a
+    //pause / lose variables:a
     public bool isPaused = false;
     public bool hasLost;
 
